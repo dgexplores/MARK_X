@@ -14,6 +14,7 @@ A comprehensive web-based system designed to collect excess/leftover food from d
 - [Installation](#installation)
 - [GitHub Deployment](#github-deployment)
 - [Live Hosting Options](#live-hosting-options)
+- [Deployment Paths (New)](#deployment-paths-new)
 - [Security Features](#security-features)
 - [Project Structure](#project-structure)
 - [Usage](#usage)
@@ -249,6 +250,59 @@ Deploy your code to a free PHP hosting service:
    - Visit your hosting URL
    - Test all modules
 
+## 🚀 Deployment Paths (New)
+
+Use these ready-made folders for safer deployment without touching your main app files.
+
+### Path A: Vercel Frontend + PHP Backend (Recommended Hybrid)
+
+Use folder:
+
+- `vercel-ready/`
+
+What it does:
+
+- Deploys a static launch frontend on Vercel
+- Sends users to your real PHP backend pages
+
+Steps:
+
+1. Deploy backend first (Hostinger/cPanel/Railway/VPS), example:
+   - `https://your-backend-domain.com/MARK_16`
+2. Open:
+   - `vercel-ready/public/config.js`
+3. Set:
+   - `backendBaseUrl` to your backend URL
+4. Deploy `vercel-ready` to Vercel
+5. Open Vercel URL and verify buttons route to backend
+
+### Path B: Full PHP Hosting (Single Host)
+
+Use docs in:
+
+- `cpanel-ready/README.md`
+- `cpanel-ready/.env.local.production.example`
+- `cpanel-ready/DEPLOY_SMOKE_TEST.md`
+
+Steps:
+
+1. Upload full `MARK_16` folder to hosting (`public_html/MARK_16`)
+2. Create MySQL DB and import `database/demo.sql` (or latest export)
+3. Update `connection.php` DB credentials
+4. Create `.env.local` from production example
+5. Set cron for automation:
+   - `api/automation_tick.php?key=YOUR_AUTOMATION_KEY`
+6. Run smoke test checklist
+
+### Which one should I use?
+
+- Want simple cloud frontend + existing PHP backend: **Path A**
+- Want complete app on one host: **Path B**
+
+### Important note
+
+Vercel alone is not enough for this project because business APIs/auth are PHP+MySQL.
+
 ## 🌐 Live Hosting Options
 
 ### Free Hosting Services Comparison
@@ -297,6 +351,8 @@ MARK_16/
 │   └── speech.js
 ├── database/             # Database files
 │   └── demo.sql         # Database schema
+├── vercel-ready/         # Vercel frontend deployment package
+├── cpanel-ready/         # Full PHP hosting deployment guides/templates
 ├── delivery/             # Delivery module
 │   ├── delivery.php     # Delivery dashboard
 │   ├── deliverylogin.php
@@ -408,3 +464,4 @@ For issues, questions, or contributions:
 **⭐ If you find this project helpful, please give it a star on GitHub!**
 
 **📌 Remember:** This is a PHP application and requires a PHP-enabled server. GitHub Pages will NOT work. Use free PHP hosting services or local development with XAMPP.
+
